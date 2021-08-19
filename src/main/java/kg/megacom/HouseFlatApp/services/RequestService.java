@@ -7,6 +7,6 @@ import kg.megacom.HouseFlatApp.models.inputs.InputUserData;
 public interface RequestService {
     RequestDto saveRequest(InputRequestData inputRequestData);
 
-    InputUserData chekCode(Long user_id,Long userCode);
+
 
 }

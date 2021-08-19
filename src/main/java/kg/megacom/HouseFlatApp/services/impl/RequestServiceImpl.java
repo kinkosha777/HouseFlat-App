@@ -30,29 +30,7 @@ public class RequestServiceImpl implements RequestService {
         return requestMapper.toDto(requestRepo.save(requestMapper.toEntity(requestDto)));
     }
 
-    @Override
-    public InputUserData chekCode(Long user_id, Long userCode) {
-        CodeDto  codeDto = new CodeDto();
-        RequestDto requestDto = new RequestDto();
-        if (userCode == 0){
-            throw new RuntimeException("код не может быть пустым");
 
-        }else if (userCode != (codeDto.getCode())){
-            codeDto.setCodeStatus(CodeStatus.FAILED);
-
-        }
-        {
-            requestDto.setSuccess(true);
-            InputUserData inputUserData = new InputUserData();
-            codeDto.setCode(inputUserData.getUserCode());
-            codeDto.setUser(userService.findUserById(inputUserData.getUserId()));
-        }
-        requestDto.setSuccess(true);
-        InputUserData inputUserData = new InputUserData();
-        codeDto.setCode(inputUserData.getUserCode());
-        codeDto.setUser(userService.findUserById(inputUserData.getUserId()));
-            throw new RuntimeException("код не правильный");
-    }
 
 
 

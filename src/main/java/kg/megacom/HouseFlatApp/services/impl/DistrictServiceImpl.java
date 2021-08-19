@@ -23,6 +23,7 @@ public class DistrictServiceImpl implements DistrictService {
 
     @Override
     public DistrictDto findDistrictById(Long id) {
+        System.out.println("sasq  "+districtRepo.findById(id));
         District district = districtRepo.findById(id).orElseThrow(()->new RuntimeException("Район по айди не найден!"));
         return districtMapper.toDto(district);
     }

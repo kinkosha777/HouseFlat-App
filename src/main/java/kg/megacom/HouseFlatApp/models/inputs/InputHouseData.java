@@ -1,6 +1,9 @@
 package kg.megacom.HouseFlatApp.models.inputs;
 
 import lombok.Data;
+
+import java.util.List;
+
 @Data
 public class InputHouseData {
     private int room;
@@ -17,4 +20,5 @@ public class InputHouseData {
     private double lat;
     private double lon;
     private String address;
+    private List<InputImageData> inputImageDataList;
 }

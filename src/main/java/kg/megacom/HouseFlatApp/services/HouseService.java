@@ -6,5 +6,6 @@ import kg.megacom.HouseFlatApp.models.inputs.InputHouseData;
 public interface HouseService {
 
     HouseDto saveHouse(InputHouseData inputHouseData);
+    HouseDto findHouseById(Long id);
 
 }

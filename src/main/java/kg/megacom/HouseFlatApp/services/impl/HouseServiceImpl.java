@@ -3,6 +3,7 @@ package kg.megacom.HouseFlatApp.services.impl;
 import kg.megacom.HouseFlatApp.dao.HouseRepo;
 import kg.megacom.HouseFlatApp.mappers.HouseMapper;
 import kg.megacom.HouseFlatApp.models.dto.HouseDto;
+import kg.megacom.HouseFlatApp.models.entities.House;
 import kg.megacom.HouseFlatApp.models.inputs.InputHouseData;
 import kg.megacom.HouseFlatApp.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,11 @@ public class HouseServiceImpl implements HouseService {
         houseDto.setPrice(inputHouseData.getPrice());
         houseDto.setRooms(inputHouseData.getRoom());
         return houseMapper.toDto(houseRepo.save(houseMapper.toEntity(houseDto)));
+    }
+
+    @Override
+    public HouseDto findHouseById(Long id) {
+        House house = houseRepo.findById(id).orElseThrow(()-> new RuntimeException("Дом по айди не найден!"));
+        return houseMapper.toDto(house);
     }
 }
