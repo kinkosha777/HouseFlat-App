@@ -8,6 +8,8 @@ import kg.megacom.HouseFlatApp.services.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegionServiceImpl implements RegionService {
     @Autowired
@@ -25,4 +27,11 @@ public class RegionServiceImpl implements RegionService {
         Region region = regionRepo.findById(id).orElseThrow(()->new RuntimeException("Регион по айди не найден!"));
         return regionMapper.toDto(region);
     }
+
+    @Override
+    public List<RegionDto> findRegionByName(String name) {
+        return regionMapper.toDtoList(regionRepo.findByName(name));
+    }
+
+
 }

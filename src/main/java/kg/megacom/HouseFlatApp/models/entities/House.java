@@ -21,8 +21,8 @@ public class House {
     @ManyToOne
     @JoinColumn(name ="types_id")
     private Type type;
-    private String internet;
-    private String furniture;
+    private boolean internet;
+    private boolean furniture;
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
@@ -30,7 +30,7 @@ public class House {
     @JoinColumn(name = "city_villages_id")
     private CityVillage cityVillage;
     @ManyToOne
-    @JoinColumn(name = "districts_id")
+    @JoinColumn(name = "districts_id", nullable = false)
     private District district;
     @CreationTimestamp
     private LocalDate addDate;

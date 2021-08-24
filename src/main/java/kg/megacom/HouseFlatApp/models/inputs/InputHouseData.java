@@ -12,13 +12,13 @@ public class InputHouseData {
     private double area;
     private double price;
     private Long typeId;
-    private String internet;
-    private String furniture;
+    private boolean internet;
+    private boolean furniture;
     private Long ownerUserId;
     private Long cityVillageId;
     private Long districtId;
     private double lat;
     private double lon;
     private String address;
-    private List<InputImageData> inputImageDataList;
+
 }

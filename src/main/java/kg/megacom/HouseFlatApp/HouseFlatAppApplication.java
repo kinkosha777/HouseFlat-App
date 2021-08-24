@@ -8,6 +8,8 @@ public class HouseFlatAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HouseFlatAppApplication.class, args);
+
+		
 	}
 
 }

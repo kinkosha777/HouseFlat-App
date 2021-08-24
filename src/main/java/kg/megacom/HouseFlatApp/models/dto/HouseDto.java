@@ -12,8 +12,8 @@ public class HouseDto {
     private double area;
     private double price;
     private TypeDto type;
-    private String internet;
-    private String furniture;
+    private boolean internet;
+    private boolean furniture;
     private UserDto user;
     private CityVillageDto cityVillage;
     private DistrictDto district;

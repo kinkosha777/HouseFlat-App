@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @Table(name = "codes")
@@ -13,11 +15,11 @@ public class Code {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long code;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     @Enumerated(EnumType.STRING)
     private CodeStatus codeStatus;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "users_id")
     private User user;
 }

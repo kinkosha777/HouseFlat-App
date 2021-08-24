@@ -10,8 +10,9 @@ public interface ReserveHistoryService {
     ReserveHistoryDto saveReserve(ReserveHistoryDto reserveHistoryDto);
     ReserveHistoryDto save(InputReserveHistoryData inputReserveHistoryData);
     ReserveHistoryDto findReserveById(Long id);
-    OutputReserveData doOperation(List<ReserveHistoryDto> reserveHistoryDtoList, Long id);
-    OutputReserveData pay(Long user_id, double cash);
+
+    OutputReserveData pay(Long reserve_id,Long user_id, double cash);
+    List<ReserveHistoryDto> findHouseById(Long id);
 
 
 

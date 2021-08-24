@@ -5,14 +5,14 @@ import kg.megacom.HouseFlatApp.enums.CodeStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 public class CodeDto {
     private Long id;
     private Long code;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-    private LocalDate startDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-    private LocalDate endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private CodeStatus codeStatus;
     private UserDto user;
 }

@@ -8,5 +8,6 @@ import java.util.Date;
 
 @Repository
 public interface RequestRepo extends JpaRepository<Request,Long> {
-//    long countAllByCodeAndStartDateAfter(Long user_id, Date date);
+
+    long countAllByCodeIdAndSuccess(Long code_id, boolean success);
 }
