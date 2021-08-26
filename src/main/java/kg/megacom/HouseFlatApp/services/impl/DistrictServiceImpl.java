@@ -1,6 +1,8 @@
 package kg.megacom.HouseFlatApp.services.impl;
 
 import kg.megacom.HouseFlatApp.dao.DistrictRepo;
+import kg.megacom.HouseFlatApp.exceptions.CityVillageNotFound;
+import kg.megacom.HouseFlatApp.exceptions.DistrictNotFound;
 import kg.megacom.HouseFlatApp.mappers.DistrictMapper;
 import kg.megacom.HouseFlatApp.models.dto.CityVillageDto;
 import kg.megacom.HouseFlatApp.models.dto.DistrictDto;
@@ -24,7 +26,7 @@ public class DistrictServiceImpl implements DistrictService {
     @Override
     public DistrictDto findDistrictById(Long id) {
         System.out.println("sasq  "+districtRepo.findById(id));
-        District district = districtRepo.findById(id).orElseThrow(()->new RuntimeException("Район по айди не найден!"));
+        District district = districtRepo.findById(id).orElseThrow(()->new DistrictNotFound("Айди Района не найдено!"));
         return districtMapper.toDto(district);
     }
 
@@ -33,7 +35,7 @@ public class DistrictServiceImpl implements DistrictService {
         CityVillageDto cityVillageDto = new CityVillageDto();
         DistrictDto districtDto = new DistrictDto();
         districtDto.setCityVillage(cityVillageDto);
-        District district = districtRepo.findById(id).orElseThrow(()->new RuntimeException("Айди не найдено!"));
+        District district = districtRepo.findById(id).orElseThrow(()->new CityVillageNotFound("Айди города не найдено!"));
         return districtMapper.toDto(district);
     }
 }

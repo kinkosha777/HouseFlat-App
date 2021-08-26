@@ -1,6 +1,7 @@
 package kg.megacom.HouseFlatApp.services.impl;
 
 import kg.megacom.HouseFlatApp.dao.CityVillageRepo;
+import kg.megacom.HouseFlatApp.exceptions.CityNotFound;
 import kg.megacom.HouseFlatApp.mappers.CityVillageMapper;
 import kg.megacom.HouseFlatApp.models.dto.CityVillageDto;
 import kg.megacom.HouseFlatApp.models.entities.CityVillage;
@@ -22,7 +23,7 @@ public class CityVillageServiceImpl implements CityVillageService {
 
     @Override
     public CityVillageDto findCityVillageById(Long id) {
-        CityVillage cityVillage = cityVillageRepo.findById(id).orElseThrow(()-> new RuntimeException("Айди города не найден!"));
+        CityVillage cityVillage = cityVillageRepo.findById(id).orElseThrow(()-> new CityNotFound("Айди города не найден!"));
         return cityVillageMapper.toDto(cityVillage);
     }
 }

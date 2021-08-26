@@ -21,8 +21,8 @@ public class CodeController {
         public ResponseEntity<Boolean>  putCode(@RequestParam Long user_id, @RequestParam Long code){
             return new ResponseEntity<>(codeService.putCode(code, user_id), HttpStatus.CREATED);
         }
-    @PostMapping("/update-code")
-    public ResponseEntity<Boolean> updateCode(@RequestParam Long user_id){
-        return new ResponseEntity<>(codeService.updateCode(user_id),HttpStatus.CREATED);
-    }
+         @PostMapping("/update-code")
+         public ResponseEntity<Boolean> updateCode(@RequestParam Long user_id){
+            return new ResponseEntity<>(codeService.updateCode(user_id),HttpStatus.CREATED);
+        }
 }

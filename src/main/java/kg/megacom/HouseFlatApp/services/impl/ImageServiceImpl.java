@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 public class ImageServiceImpl implements ImageService {
     @Autowired
     private ImageRepo imageRepo;
-
-
     HouseMapper houseMapper = HouseMapper.HOUSE_MAPPER;
     @Autowired
     private HouseService houseService;

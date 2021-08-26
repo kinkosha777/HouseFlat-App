@@ -1,6 +1,7 @@
 package kg.megacom.HouseFlatApp.services.impl;
 
 import kg.megacom.HouseFlatApp.dao.RegionRepo;
+import kg.megacom.HouseFlatApp.exceptions.RegionNotFound;
 import kg.megacom.HouseFlatApp.mappers.RegionMapper;
 import kg.megacom.HouseFlatApp.models.dto.RegionDto;
 import kg.megacom.HouseFlatApp.models.entities.Region;
@@ -24,7 +25,7 @@ public class RegionServiceImpl implements RegionService {
 
     @Override
     public RegionDto findRegionById(Long id) {
-        Region region = regionRepo.findById(id).orElseThrow(()->new RuntimeException("Регион по айди не найден!"));
+        Region region = regionRepo.findById(id).orElseThrow(()->new RegionNotFound("Регион по айди не найден!"));
         return regionMapper.toDto(region);
     }
 

@@ -1,6 +1,7 @@
 package kg.megacom.HouseFlatApp.services.impl;
 
 import kg.megacom.HouseFlatApp.dao.TypeRepo;
+import kg.megacom.HouseFlatApp.exceptions.TypeNotFound;
 import kg.megacom.HouseFlatApp.mappers.TypeMapper;
 import kg.megacom.HouseFlatApp.models.dto.TypeDto;
 import kg.megacom.HouseFlatApp.models.entities.Type;
@@ -24,7 +25,7 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public TypeDto findTypeById(Long id) {
-        Type type = typeRepo.findById(id).orElseThrow(()->new RuntimeException("Тип по айди не найден!"));
+        Type type = typeRepo.findById(id).orElseThrow(()->new TypeNotFound("Тип по айди не найден!"));
         return typeMapper.toDto(type);
     }
 }

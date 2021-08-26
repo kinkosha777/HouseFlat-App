@@ -20,10 +20,4 @@ public class UserController {
     public ResponseEntity<UserDto> save(@RequestBody UserDto userDto){
         return new  ResponseEntity<> (userService.save(userDto), HttpStatus.CREATED);
     }
-    @PostMapping("/get-or-create")
-    public ResponseEntity<UserDto> getOrCreate(@RequestBody UserDto userDto){
-        return new ResponseEntity<>(userService.getOrCreate(userDto),HttpStatus.CREATED);
-
-    }
-
 }

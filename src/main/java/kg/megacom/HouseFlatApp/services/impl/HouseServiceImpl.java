@@ -1,6 +1,9 @@
 package kg.megacom.HouseFlatApp.services.impl;
 
 import kg.megacom.HouseFlatApp.dao.HouseRepo;
+import kg.megacom.HouseFlatApp.exceptions.HouseNotFound;
+import kg.megacom.HouseFlatApp.exceptions.PleaseFillAllFields;
+import kg.megacom.HouseFlatApp.exceptions.PleasePutPositivePrice;
 import kg.megacom.HouseFlatApp.mappers.HouseMapper;
 import kg.megacom.HouseFlatApp.models.dto.HouseDto;
 import kg.megacom.HouseFlatApp.models.entities.District;
@@ -28,13 +31,18 @@ import java.util.List;
 
     @Override
     public HouseDto saveHouse(InputHouseData inputHouseData) {
-
+        if (inputHouseData.getRoom()<=0 || inputHouseData.getFloor() <=0 || inputHouseData.getArea()<=0 || inputHouseData.getAddress() == null || inputHouseData.getLat()<=0 || inputHouseData.getLon()<=0){
+            throw new PleaseFillAllFields("Пожалуйста заполните все поля!!");
+        }
+        if (inputHouseData.getPrice() <=0){
+            throw new PleasePutPositivePrice("Пожалуйста введите положительную цену!");
+        }
         HouseDto houseDto = new HouseDto();
         houseDto.setAddress(inputHouseData.getAddress());
         houseDto.setArea(inputHouseData.getArea());
         houseDto.setCityVillage(cityVillageService.findCityVillageById(inputHouseData.getCityVillageId()));
         houseDto.setType(typeService.findTypeById(inputHouseData.getTypeId()));
-        houseDto.setUser(userService.findUserById(inputHouseData.getOwnerUserId()));
+        houseDto.setUser(userService.findById(inputHouseData.getOwnerUserId()));
         houseDto.setDistrict(districtService.findDistrictById(inputHouseData.getDistrictId()));
         houseDto.setFloor(inputHouseData.getFloor());
         houseDto.setFurniture(inputHouseData.isFurniture());
@@ -44,15 +52,14 @@ import java.util.List;
         houseDto.setPrice(inputHouseData.getPrice());
         houseDto.setRooms(inputHouseData.getRoom());
         houseDto.setDescriptions(inputHouseData.getDescription());
-        if (inputHouseData.getPrice()<=0){
-            throw new RuntimeException("Пожалуйста введите положительную цену!");
-        }
+
+
         return houseMapper.toDto(houseRepo.save(houseMapper.toEntity(houseDto)));
     }
 
     @Override
     public HouseDto findHouseById(Long id) {
-        House house = houseRepo.findById(id).orElseThrow(()-> new RuntimeException("Дом по айди не найден!"));
+        House house = houseRepo.findById(id).orElseThrow(()-> new HouseNotFound("Дом по айди не найден!"));
         return houseMapper.toDto(house);
     }
 
@@ -92,16 +99,4 @@ import java.util.List;
     public List<HouseDto> findHouseByFurniture(boolean furniture) {
         return houseMapper.toDtoList(houseRepo.findHouseByFurniture(furniture));
     }
-
-//    @Override
-//    public List<HouseDto> findHouseByInternet(boolean internet) {
-//        return houseMapper.toDtoList(houseRepo.findHouseByInternet(internet));
-//    }
-//
-//    @Override
-//    public List<HouseDto> findHouseByFurniture(Long id) {
-//        return houseMapper.toDtoList(houseRepo.findHouseByFurniture(id));
-//    }
-
-
 }

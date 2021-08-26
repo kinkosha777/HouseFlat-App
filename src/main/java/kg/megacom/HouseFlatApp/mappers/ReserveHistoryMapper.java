@@ -7,4 +7,5 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface ReserveHistoryMapper extends BaseMapper<ReserveHistoryDto, ReserveHistory> {
     ReserveHistoryMapper RESERVE_HISTORY_MAPPER = Mappers.getMapper(ReserveHistoryMapper.class);
+
 }
